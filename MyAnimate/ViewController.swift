@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     //移动
     @IBAction func MyMove(_ sender: Any) {
         UIView.animate(withDuration: 2, animations: {
-            self.MyView.center.x += 200.0
+            self.MyView.center.x += 000.0
         },completion: { _ in
             UIView.animate(withDuration: 1, animations: {
                 self.MyView.center.x -= 200.0
@@ -65,21 +65,22 @@ class ViewController: UIViewController {
     }
     //视图间的切换
     @IBAction func MyTransition(_ sender: Any) {
-        //增加的子视图(从一个视图切换到另一个视图，但只在其上一级父容器里切换)
-        let theView = UIView(frame: MyView.frame)
+        //增加的子视图(从一个视图切换到另一个视图，但只在其上一级父容器里切换,本例中跟backView一起变化)
+        //注意bounds和frame的区别，有不同的效果
+        let theView = UIView(frame: MyView.bounds)
         theView.backgroundColor = UIColor.green
-        UIView.transition(from: MyView, to: theView, duration: 2, options: .transitionCurlUp, completion: nil)
+//        UIView.transition(from: MyView, to: theView, duration: 2, options: .transitionCurlUp, completion: nil)
         
         //在一个view上操作(比如改它的背景颜色等等)
-//        UIView.transition(with: MyView, duration: 2, options: .transitionFlipFromLeft, animations: {
-//            self.MyView.addSubview(theView)
-//        }, completion: {
-//            //切换回来
-//            _ in  UIView.transition(with: self.MyView, duration: 2, options: .transitionFlipFromRight, animations: {
-//                //移除子视图
-//                theView.removeFromSuperview()
-//            }, completion: nil)
-//        })
+        UIView.transition(with: MyView, duration: 2, options: .transitionFlipFromLeft, animations: {
+            self.MyView.addSubview(theView)
+        }, completion: {
+            //切换回来
+            _ in  UIView.transition(with: self.MyView, duration: 2, options: .transitionFlipFromRight, animations: {
+                //移除子视图
+                theView.removeFromSuperview()
+            }, completion: nil)
+        })
 }
     
     //Dynamic(增加视图)
