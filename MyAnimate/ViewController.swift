@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     //移动
     @IBAction func MyMove(_ sender: Any) {
         UIView.animate(withDuration: 2, animations: {
-            self.MyView.center.x += 000.0
+            self.MyView.center.x += 200.0
         },completion: { _ in
             UIView.animate(withDuration: 1, animations: {
                 self.MyView.center.x -= 200.0
